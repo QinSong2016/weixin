@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购买材料</title>
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name=”apple-mobile-web-app-capable” content=”yes” />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Pragma" content="no-cache">
+		<link rel="stylesheet" href="../css/index.css" />
+		<script src="../js/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript">
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				if(parseFloat(RegExp.$1)>2.3){
+					var phoneScale = parseInt(window.screen.width)/640;
+					document.write('<meta name="viewport" content="width=640, minimum-scale='+ phoneScale +', maximum-scale='+ phoneScale +', target-densitydpi=device-dpi" />');
+				}else{
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi" />');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=640,user-scalable=no, target-densitydpi=device-dpi" />');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="title">
+				<h2>材料列表</h2>
+			</div>
+			<div class="mateList">
+				<div class="mateItem">
+					<div class="img">
+						<img src="../images/header.jpg" alt="" />
+					</div>
+					<label class="name">阿什顿发顺丰阿斯蒂芬水电费撒范德萨的分数段</label>
+					<label class="price">￥100</label>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="mateItem">
+					<div class="img">
+						<img src="../images/b_edit.png" alt="" />
+					</div>
+					<label class="name">分数段</label>
+					<label class="price">￥100</label>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="mateItem">
+					<div class="img">
+						<img src="" alt="" />
+					</div>
+					<label class="name">分数段</label>
+					<label class="price">￥100</label>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="mateItem">
+					<div class="img">
+						
+					</div>
+					<label class="name">分数段</label>
+					<label class="price">￥100</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$.each(document.getElementsByClassName("name"), function(n, value) {
+					if ($(value).text().length > 13) {
+						$(value).removeClass("single_row");
+						$(value).removeClass("double_row");
+						$(value).addClass("double_row");
+					} else {
+						$(value).removeClass("single_row");
+						$(value).removeClass("double_row");
+						$(value).addClass("single_row");
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

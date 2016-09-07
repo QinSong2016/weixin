@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name=”apple-mobile-web-app-capable” content=”yes” />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Pragma" content="no-cache">
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<script src="../js/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript">
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				if(parseFloat(RegExp.$1)>2.3){
+					var phoneScale = parseInt(window.screen.width)/640;
+					document.write('<meta name="viewport" content="width=640, minimum-scale='+ phoneScale +', maximum-scale='+ phoneScale +', target-densitydpi=device-dpi" />');
+				}else{
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi" />');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=640,user-scalable=no, target-densitydpi=device-dpi" />');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			
+			<div class="product">
+	            <div class="product-img">
+	            	<img src="../images/product_big_img1.jpg">
+	            </div>
+	          	<div class="product-buy promotions-buy">
+	            	<h3>口语100VR眼镜</h3>
+	                <p class="unit-price">单价：<span class="orange">￥<b class="price">38</b></span>（含邮费）</p>
+	                <!--<div class="promotions-div">
+	                	<p class="old-price">原价：<span>￥38</span>（含邮费）</p>
+	                	<p>促销价：<span class="orange">￥<b class="price">29.9</b></span>（含邮费）</p>
+	                    <p id="countdown" class="countdown"></p>
+	                </div>-->
+	                <p>数量：
+	                	<span class="amount">
+	                		<img src="../images/less.jpg" onClick="amountLess(this)">
+	                		<input type="text" class="txt" value="1"  onkeyup="this.value=this.value.replace(/\D/g,'');amountChang(this)" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+	                		<img src="../images/add.jpg" onClick="amountAdd(this)">
+	                	</span>
+	                </p>
+	            </div>
+	            <div class="product-description">
+	                <img src="../images/paper_img.jpg">
+	            </div>
+	        </div>
+			
+			
+			<div class="product-buy-btn">
+	        	<a href="#" class="btn">立即购买</a>
+	        	<div class="subtotal">小计：<span class="color-white">￥<b class="total-price">38</b></span></div>
+	        </div>
+		</div>
+		
+		
+		<script>
+			var num;
+			function amountAdd(obj) {
+				var input = $(obj).parent().parent().find("input");
+				var price = parseFloat($(obj).parents().find(".price").html());
+				var totalPrice = $(obj).parents().find(".total-price");
+				num=$(input).val();
+				num++;
+				if(num==10000){
+					return;	
+				}
+				$(input).val(num);
+				$(totalPrice).html((num*price).toFixed(2))
+			}
+		
+			function amountLess(obj) {
+				var input = $(obj).parent().parent().find("input");
+				var price = parseFloat($(obj).parents().find(".price").html());
+				var totalPrice = $(obj).parents().find(".total-price");
+				num=$(input).val();
+				num--;
+				if(num==0){
+					return;	
+				}
+				$(input).val(num);
+				$(totalPrice).html((num*price).toFixed(2))
+			}
+			
+			function amountChang(obj) {
+				var nubmer = parseInt($(obj).val());
+				var price = parseFloat($(obj).parents().find(".price").html());
+				var totalPrice = $(obj).parents().find(".total-price");
+				if(isNaN(nubmer)||nubmer<=0||!(/^\d+$/.test(nubmer))){
+					alert("只能输入正整数！");
+					$(obj).val("1");
+					return;
+				}else if(nubmer > 10000){
+					alert("最多输入四位数！");
+					$(obj).val("9999");
+					return;
+				}
+				$(totalPrice).html((nubmer*price).toFixed(2))
+			}
+		</script>
+		
+	</body>
+</html>

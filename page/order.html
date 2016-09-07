@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name=”apple-mobile-web-app-capable” content=”yes” />
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>提交订单</title>
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<script src="../js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+	if(parseFloat(RegExp.$1)>2.3){
+		var phoneScale = parseInt(window.screen.width)/640;
+		document.write('<meta name="viewport" content="width=640, minimum-scale='+ phoneScale +', maximum-scale='+ phoneScale +', target-densitydpi=device-dpi" />');
+	}else{
+		document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi" />');
+	}
+}else{
+	document.write('<meta name="viewport" content="width=640,user-scalable=no, target-densitydpi=device-dpi" />');
+}
+</script>
+<!--<script type="text/javascript" src="../js/learningWorld.js"></script>-->
+
+</head>
+<body>
+	<div class="main">
+   	  	<div class="product-order">
+       		<!--<h3>个人信息</h3>
+       		<div class="personal-information border-bottom">
+            	<p>姓名：王小明</p>
+                <p>班级：初2012级九年级一班</p>
+            </div>-->
+            
+            <h3>购买详情</h3>
+            <div class="order-information border-bottom">
+            	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+                	<tr height="90">
+                		<td width="66%" valign="middle" align="left">星空侠-口语100智能安全手表(星空蓝)</td>
+                        <td width="34%" valign="middle" align="right">￥<span class="price">599</span></td>
+                	</tr>
+                    <tr height="90">
+                		<td valign="middle" align="left">数量：</td>
+                        <td valign="middle" align="right"><span class="amount"><img src="../images/less.jpg" onClick="amountLess(this)"><input type="text" class="txt" value="1"  onkeyup="this.value=this.value.replace(/\D/g,'');amountChang(this)" onafterpaste="this.value=this.value.replace(/\D/g,'')"><img src="../images/add.jpg" onClick="amountAdd(this)"></span></td>
+                	</tr>
+                    <tr height="90">
+                		<td valign="middle" align="left">总价：</td>
+                        <td valign="middle" align="right"><span class="orange">￥<b class="total-price">599</b></span></td>
+                	</tr>
+                </table>
+            </div>
+            
+            <h3><a href="#"><img src="../images/arrow.png"></a>收件人信息</h3>
+  	  	  	<div class="no-recipient-information border-bottom">
+  	  	  		<a href="#">添加收件人信息</a>
+  	  	  	</div>
+            <!--<div class="recipient-information border-bottom">
+            	<p>姓名：王小明</p>
+                <p>联系方式：<span class="addressee-tel"></span></p>
+                <p>收货地址：<span class="addressee-address">北京市海淀区上地三街科实大厦C座11层</span></p>
+            </div>-->
+            
+            <div class="invoice-information border-bottom">
+            	<p>发票抬头：</p>
+            	<div class="invoice-box">
+            		<textarea type="text" class="invoice" placeholder="请输入发票抬头" >苏州清睿教育股份科技有限公司</textarea>
+            	</div>
+            </div>
+            <div class="clear"></div>
+            
+            <div class="submit-order">
+            	<span class="confirmation-btn">我已确认信息无误</span> <span class="submit">支付</span>
+            </div>
+        </div>
+      
+    </div>
+    
+    <script>
+    	$(".confirmation-btn").click(function(){
+			if($(this).hasClass('confirmation-btn-on')){
+				$(this).removeClass("confirmation-btn-on");
+				$(".submit-order .submit").removeClass("submit-on");	
+				$(".submit-order .submit").attr("onClick","javascript:;");
+				
+			}else{
+				$(this).addClass("confirmation-btn-on");
+				$(".submit-order .submit").attr("onClick","submitOrder()");
+				$(".submit-order .submit").addClass("submit-on");
+			}
+		});
+		
+		var num;
+		function amountAdd(obj){
+			var input = $(obj).parent().parent().find("input");
+			var price = parseFloat($(obj).parents().find(".price").html());
+			var totalPrice = $(obj).parents().find(".total-price");
+			num=$(input).val();
+			num++;
+			if(num==10000){
+				return;	
+			}
+			$(input).val(num);
+			$(totalPrice).html((num*price).toFixed(2))
+		}
+		function amountLess(obj){
+			var input = $(obj).parent().parent().find("input");
+			var price = parseFloat($(obj).parents().find(".price").html());
+			var totalPrice = $(obj).parents().find(".total-price");
+			num=$(input).val();
+			num--;
+			if(num==0){
+				return;	
+			}
+			$(input).val(num);
+			$(totalPrice).html((num*price).toFixed(2))
+		}
+		function amountChang(obj){
+			var nubmer = parseInt($(obj).val());
+			var price = parseFloat($(obj).parents().find(".price").html());
+			var totalPrice = $(obj).parents().find(".total-price");
+			if(isNaN(nubmer)||nubmer<=0||!(/^\d+$/.test(nubmer))){
+				alert("只能输入正整数！");
+				$(obj).val("1");
+				return;
+			}else if(nubmer > 10000){
+				alert("最多输入四位数！");
+				$(obj).val("9999");
+				return;
+			}
+			$(totalPrice).html((nubmer*price).toFixed(2))
+		}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name=”apple-mobile-web-app-capable” content=”yes” />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Pragma" content="no-cache">
+		
+		<title>收件人信息</title>
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<script src="../js/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript">
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				if(parseFloat(RegExp.$1)>2.3){
+					var phoneScale = parseInt(window.screen.width)/640;
+					document.write('<meta name="viewport" content="width=640, minimum-scale='+ phoneScale +', maximum-scale='+ phoneScale +', target-densitydpi=device-dpi" />');
+				}else{
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi" />');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=640,user-scalable=no, target-densitydpi=device-dpi" />');
+			}
+		</script>
+		<script type="text/javascript" src="../js/getProvinceAndCityAndDistrict.js"></script>
+		<script type="text/javascript" src="../js/learningWorld.js"></script>
+		<script type="text/javascript" src="../js/select.js"></script>
+	</head>
+	<body>
+		<div class="main">
+	   	  	<div class="add-address">
+	        	<form name='myform'>
+	                <ul id="add-address-list">
+	                    <li class="clearfix"><span class="li-left">姓名：</span><span class="li-input"><input type="text" class="add-name" value="王小明" placeholder="请输入姓名" onKeyUp="formInput()"></span></li>
+	                    <li class="clearfix"><span class="li-left">手机号：</span><span class="li-input"><input type="text" class="add-phone" value="13341455667" placeholder="请输入手机号" onKeyUp="formInput()"></span></li>
+	                    <li class="clearfix"><span class="li-left">省份：</span><span class="li-select province"><label>请选择</label><select name='province' id='province'></select></span></li>
+	                    <li class="clearfix"><span class="li-left">城市：</span><span class="li-select city"><label>请选择</label><select name='city' id='city'></select></span></li>
+	                    <li class="clearfix"><span class="li-left">区/县：</span><span class="li-select district"><label>请选择</label><select name='district' id='district'></select></span></li>
+	                    <li class="clearfix"><span class="li-left">详细地址：</span><span class="li-input"><input type="text" class="add-danyan" value="" onKeyUp="formInput()" placeholder="请输入街道/小区/楼号/单元/房间号"></span></li>
+	                </ul>
+	                <div class="form-btn">
+	                	<a class="" href="javascript:;">确定</a>
+	                </div>
+	            </form>
+	        </div>
+		</div>
+		<!--<script>
+			function formInput() {
+				if($(".add-name").val() == "" || $(".add-phone").val() == "" || $(".province label").html() == "请选择" || $(".city label").html() == "请选择" || $(".district label").html() == "请选择" || $(".add-danyan").val() == "" ){
+					$(".form-btn").removeClass("form-btn-on");
+					$(".form-btn a").attr("href","javascript:;");
+				}else{
+					$(".form-btn").addClass("form-btn-on");
+					$(".form-btn a").attr("href","javascript:formSubmit()");
+				}
+			}
+		</script>-->
+	</body>
+</html>
